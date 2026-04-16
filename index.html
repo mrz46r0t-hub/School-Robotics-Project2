@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakerHub | Development Platform</title>
+    <style>
+        /* Минималистичный интерфейс без лишнего декора */
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .nav {
+            padding: 15px 20px;
+            border-bottom: 1px solid #30363d;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 80px auto 40px;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 600;
+            color: #f0f6fc;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #8b949e;
+            font-size: 18px;
+            margin-top: 12px;
+            max-width: 700px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 100px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 60px;
+            color: #f0f6fc;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 12px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .project-card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: #8b949e;
+        }
+
+        .category {
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+            color: #3fb950;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .project-card h3 {
+            margin: 12px 0;
+            font-size: 18px;
+            color: #f0f6fc;
+        }
+
+        .project-card p {
+            color: #8b949e;
+            font-size: 14px;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+        
+        .drive-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #21262d;
+            border: 1px solid #30363d;
+            color: #58a6ff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .drive-link:hover {
+            background: #30363d;
+        }
+
+        .tool-section {
+            margin: 40px 0;
+            padding: 24px;
+            background: #0d1117;
+            border: 1px solid #1f6feb;
+            border-radius: 6px;
+        }
+
+        .tool-section h3 {
+            margin-top: 0;
+            color: #58a6ff;
+            font-size: 18px;
+        }
+
+        .tool-grid {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .tool-btn {
+            background: #1f6feb;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .tool-btn.secondary {
+            background: #238636;
+        }
+
+        .form-container {
+            max-width: 480px;
+            margin-top: 32px;
+            background: #161b22;
+            padding: 32px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            color: #f0f6fc;
+            padding: 10px;
+            margin-bottom: 16px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: #58a6ff;
+            outline: none;
+        }
+        
+        .action-btn {
+            width: 100%;
+            background: #f0f6fc;
+            color: #0d1117;
+            border: 1px solid #f0f6fc;
+            padding: 10px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .action-btn:hover {
+            background: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .project-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <a href="https://github.com/mrz46r0t-hub" target="_blank">Repositories</a>
+        <a href="https://docs.arduino.cc/" target="_blank">Documentation</a>
+        <a href="https://wokwi.com/" target="_blank">Virtual Lab</a>
+    </div>
+
+    <header>
+        <h1>MakerHub Central</h1>
+        <div class="subtitle">Техническая база документации и проектов. Исходный код, расчеты и протоколы испытаний доступны в облачном хранилище.</div>
+    </header>
+
+    <div class="container">
+        
+        <h2>Project Documentation</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="category">Hardware / Automation</div>
+                <h3>Smart Irrigation System V2</h3>
+                <p>Техническая документация системы полива: листинги кода, отчеты о калибровке датчиков и электрические схемы модулей.</p>
+                <a href="https://drive.google.com/drive/folders/1JJMeLk0FQqS0JDKKHuhi6byaxwFxT1x8" target="_blank" class="drive-link">Перейти</a>
+            </div>
+            <div class="project-card">
+                <div class="category">Engineering / BioTech</div>
+                <h3>Autonomous Farm Module</h3>
+                <p>Проектные файлы автономного модуля: 3D-модели конструкции, расчеты инсоляции и алгоритмы контроля климата.</p>
+                <a href="https://drive.google.com/drive/folders/1WTCYBOJqL8GkT1GpHAIClrt5dSQOQpDG" target="_blank" class="drive-link">Перейти</a>
+            </div>
+        </div>
+
+        <div class="tool-section">
+            <h3>AI assistance</h3>
+            <p style="color: #8b949e; font-size: 14px;">Инструменты для верификации кода и предварительного тестирования схемотехники.</p>
+            <div class="tool-grid">
+                <a href="https://gemini.google.com/" target="_blank" class="tool-btn">Gemini AI</a>
+                <a href="https://wokwi.com/" target="_blank" class="tool-btn secondary">Wokwi Simulation</a>
+            </div>
+        </div>
+
+        <h2>Network & Collaboration</h2>
+        <div class="form-container">
+            <p style="color: #8b949e; font-size: 13px; margin-top: 0; margin-bottom: 20px;">Оставьте запрос для публикации кейса или вступления в рабочую группу.</p>
+            <form id="submissionForm">
+                <input type="text" id="dev_name" placeholder="Полное имя/Ник" required>
+                <textarea id="dev_info" placeholder="Описание проекта/цели" rows="4" required></textarea>
+                <select id="dev_type">
+                    <option value="Documentation">Подписать Документы</option>
+                    <option value="Team Search">Поиск Команды</option>
+                    <option value="Mentorship">Технический Mentorship</option>
+                </select>
+                <button type="submit" class="action-btn">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('submissionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('dev_name').value;
+            const info = document.getElementById('dev_info').value;
+            const type = document.getElementById('dev_type').value;
+            
+            const admin_phone = "77756168868"; 
+            const text = `MakerHub_Log:%0AName: ${name}%0AType: ${type}%0ADesc: ${info}`;
+            
+            window.open(`https://wa.me/${admin_phone}?text=${text}`, '_blank');
+        });
+    </script>
+
+</body>
+</html>
